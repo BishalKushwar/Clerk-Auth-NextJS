@@ -1,9 +1,18 @@
-import Image from "next/image";
+"use client";
+import { useUser } from "@clerk/nextjs";
+import React from "react";
 
-export default function Home() {
+const ClientPage = () => {
+  const { isLoaded, isSignedIn, user } = useUser();
+
+  if (!isLoaded || !isSignedIn) {
+    return null;
+  }
   return (
-    <div className="flex items-center justify-center h-full">
-      <div className="text-2xl">Home Page</div>
+    <div className="h-full flex flex-col items-center justify-center text-2xl">
+      Hello, {user.firstName} welcome to your Home Page!
     </div>
   );
-}
+};
+
+export default ClientPage;
