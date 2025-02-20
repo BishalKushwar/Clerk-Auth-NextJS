@@ -5,11 +5,16 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
 
+interface NavLinkProps {
+  href: string;
+  children: React.ReactNode;
+}
+
 const Navbar = () => {
   const { userId } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
 
-  const NavLink = ({ href, children }) => (
+  const NavLink = ({ href, children }: NavLinkProps) => (
     <Link href={href}>
       <li className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 rounded-md transition-all duration-200">
         {children}
